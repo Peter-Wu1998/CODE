@@ -1,0 +1,72 @@
+package library;
+public class LIB {
+	public static void main(String[] args) {
+		Work.open();
+		Iot171 ZhangSan = new Iot171();
+		ZhangSan.BorrowBooks();
+		ZhangSan.setBorrowBooks(5);
+		Iot172 LiSi = new Iot172();
+		LiSi.ReturnBooks();
+		LiSi.setReturnBooks(2);
+		Iot173 WangWu = new Iot173();
+		WangWu.ReturnBooks();
+		WangWu.setReturnBooks(2);
+		Work.close();
+	}
+}
+
+interface Work{
+	public static void open() { 
+		System.out.println("8：00   图书馆开门了");
+	}
+	public static void close() {
+		System.out.println("23：00  图书馆关门了");
+	}
+	public default void BorrowBooks(){}
+	public default void ReturnBooks(){}
+}
+
+abstract class Library{
+	public static int num = 50000;
+	public abstract void setBorrowBooks(int n);
+	public abstract void setReturnBooks(int n);
+}
+
+class Iot171 extends Library implements Work{
+	@Override
+	public void setBorrowBooks(int n) {
+		num=num-n;
+		System.out.println("物联网171的同学借走了"+n+"本书,图书馆剩余"+num+"本书。");
+	}
+	@Override
+	public void setReturnBooks(int n) {
+		num=num+n;
+		System.out.println("物联网171的同学归还了"+n+"本书,图书馆剩余"+num+"本书。");
+	}
+}
+
+class Iot172 extends Library implements Work{
+	@Override
+	public void setBorrowBooks(int n) {
+		num=num-n;
+		System.out.println("物联网172的同学借走了"+n+"本书,图书馆剩余"+num+"本书。");
+	}
+	@Override
+	public void setReturnBooks(int n) {
+		num=num+n;
+		System.out.println("物联网172的同学归还了"+n+"本书,图书馆剩余"+num+"本书。");
+	}
+}
+
+class Iot173 extends Library implements Work{
+	@Override
+	public void setBorrowBooks(int n) {
+		num=num-n;
+		System.out.println("物联网173的同学借走了"+n+"本书,图书馆剩余"+num+"本书。");
+	}
+	@Override
+	public void setReturnBooks(int n) {
+		num=num+n;
+		System.out.println("物联网173的同学归还了"+n+"本书,图书馆剩余"+num+"本书。");
+	}
+}
